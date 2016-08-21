@@ -1,43 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import superagent from 'superagent';
-
+import PetStore from './PetStore';
 class PetStoreContainer extends React.Component {
   componentDidMount() {
     if (!this.props.loaded) {
       this.props.loadPets();
     }
   }
-
   render() {
-    const err = this.props.error;
-    console.log(this.props.pets);
-    return (
-      <div>
-        {err ? <b>{err}</b> : null}
-        {this.props.pets.map((pet, index) => (
-          <div key={index}>
-            {pet.name}
-            <input size="2" value={this.props.counters[index] || 0}/>
-            <button onClick={this.props.onCounterClick(index, 1)}>+</button>
-            <button onClick={this.props.onCounterClick(index, -1)}>-</button>
-          </div>
-        ))}
-      </div>
-    );
+    return (<PetStore {...this.props}/>);
   }
-
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onCounterClick: (index, diff) => {
-      console.log('CLICK');
-      dispatch({
-        type: 'COUNT',
-        diff,
-        index
-      })
+      return () => {
+        dispatch({
+          type: 'COUNT',
+          diff,
+          index
+        })
+      }
     },
     onCommentsChange: (text) => {
       dispatch({
@@ -46,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     loadPets: () => {
-      superagent.get('http://petstore.swagger.io/v2/pet/findByStatus?status=available')
+      superagent.get('/pet/findByStatus')
         .end((error, res) => {
           if (error) {
             dispatch({
@@ -70,10 +55,13 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(
   (state) => {
+    const counters =  state.form.cart.counters;
+    const total = state.entities.pets.reduce((total, pet, i) => (total + (pet.price || 0) * (counters[i] || 0)), 0 );
     return {
       error: state.loading.error,
       pets: state.entities.pets,
-      counters: state.form.cart.counters,
+      counters,
+      total,
       loaded: state.loading.loaded
     }
   },

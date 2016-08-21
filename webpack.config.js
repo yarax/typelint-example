@@ -1,11 +1,14 @@
+const path = require('path');
+
 module.exports = {
   entry: __dirname + "/src/client",
   cache: true,
   watch: true,
   devtool: "eval",
   output: {
-    path: __dirname + "/public/dist",
-    filename: "index.js"
+    path: path.join(__dirname, 'build'),
+    filename: 'index.js',
+    publicPath: '/static/'
   },
   module: {
     loaders: [

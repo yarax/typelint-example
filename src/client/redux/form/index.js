@@ -1,4 +1,5 @@
-import { combineReducers} from 'redux';
+import _ from 'lodash';
+
 const initialValue = {
   cart: {
     counters: [],
@@ -7,17 +8,15 @@ const initialValue = {
   }
 };
 
-
 export default (state = initialValue, action) => {
   switch (action.type) {
     case 'COUNT':
-      const newObj = {counters: []};
-      const prevValue = newObj.counters[action.index] || 0;
-      newObj.counters[action.index] = prevValue + action.diff;
-      console.log(action, state);
+      let counters = _.cloneDeep(state.cart.counters);
+      counters[action.index] = (counters[action.index] || 0) + action.diff;
+      counters[action.index] = counters[action.index] < 0 ? 0 : counters[action.index];
       return {
         ...state,
-        ...newObj
+        cart: {counters}
       };
     case 'COMMENT':
       return {
@@ -28,7 +27,7 @@ export default (state = initialValue, action) => {
       return {
         ...state,
         price: action.price
-      }
+      };
     default:
       return state;
   }

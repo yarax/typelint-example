@@ -664,6 +664,8 @@ definitions:
         format: int64
       category:
         "$ref": "#/definitions/Category"
+      price:
+        type: integer
       name:
         type: string
         example: doggie
