@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {getTitle} from '../helpers';
 /**
  * @param {{error: {message: string}, pets: [Pet], counters: Array, onCounterClick: Function, total: number}} props
  */
@@ -17,8 +17,8 @@ export default function PetStore(props) {
            */
           (pet, index) => (
           <tr key={index}>
-            <td>{pet.name2}</td>
-            <td>{pet.category.name}</td>
+            <td>{getTitle(pet)}</td>
+            <td>{getTitle(pet.category)}</td>
             <td>{pet.price}</td>
             <td>
               <input size="2" value={props.counters[index] || 0}/>
