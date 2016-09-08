@@ -1,7 +1,7 @@
 const initialState = {
   error: null,
   loaded: false
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -9,14 +9,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.error
-      }
+      };
     case 'LOADED':
       return {
         ...state,
         loaded: true
-      }
+      };
     default:
-      return state
+      return state;
   }
-
-}
+};

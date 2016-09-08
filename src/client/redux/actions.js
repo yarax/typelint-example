@@ -8,8 +8,8 @@ export default (dispatch) => {
           type: 'COUNT',
           diff,
           index
-        })
-      }
+        });
+      };
     },
     onCommentsChange: (text) => {
       dispatch({
@@ -19,6 +19,10 @@ export default (dispatch) => {
     },
     loadPets: () => {
       superagent.get('/pet/findByStatus')
+        /**
+         * @param ?error
+         * @param {{body: [Pet]}} res
+         */
         .end((error, res) => {
           if (error) {
             dispatch({
@@ -37,5 +41,5 @@ export default (dispatch) => {
           }
         });
     }
-  }
-}
+  };
+};

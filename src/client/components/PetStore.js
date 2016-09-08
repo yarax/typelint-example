@@ -1,15 +1,23 @@
 import React from 'react';
 
-export default function PetStore (props) {
+/**
+ * @param {{error: {message: string}, pets: [Pet], counters: Array, onCounterClick: Function, total: number}} props
+ */
+export default function PetStore(props) {
   const err = props.error;
   return (
     <div>
       {err ? <b>{err.message}</b> : null}
       <table className="table">
         <tbody>
-        {props.pets.map((pet, index) => (
+        {props.pets.map(
+          /**
+           * @param {Pet} pet
+           * @param index
+           */
+          (pet, index) => (
           <tr key={index}>
-            <td>{pet.name}</td>
+            <td>{pet.name2}</td>
             <td>{pet.category.name}</td>
             <td>{pet.price}</td>
             <td>

@@ -1,4 +1,4 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 const config = require('../../webpack.config');
 const express = require('express');
 const app = express();
@@ -31,5 +31,5 @@ app.get('/pet/findByStatus', (req, res) => {
 });
 
 app.listen(3000, 'localhost', () => {
-  console.log('http://localhost:3000/');
+  console.info('http://localhost:3000/');
 });

@@ -8,6 +8,11 @@ const initialValue = {
   }
 };
 
+/**
+ * @param {{cart: {counters: Array, comments: String, price: Number}}} state
+ * @param action
+ * @returns {*}
+ */
 export default (state = initialValue, action) => {
   switch (action.type) {
     case 'COUNT':
@@ -16,7 +21,7 @@ export default (state = initialValue, action) => {
       counters[action.index] = counters[action.index] < 0 ? 0 : counters[action.index];
       return {
         ...state,
-        cart: {counters}
+        cart: { counters }
       };
     case 'COMMENT':
       return {
@@ -31,4 +36,4 @@ export default (state = initialValue, action) => {
     default:
       return state;
   }
-}
+};

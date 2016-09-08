@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     return {
       ...state,
       ...newObj
-    }
+    };
   }
   return state;
-}
+};
