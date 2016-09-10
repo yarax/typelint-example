@@ -1,6 +1,7 @@
 import React from 'react';
 import {getTitle} from '../helpers';
 /**
+ * Composite types, constructed with JSDoc
  * @param {{error: {message: string}, pets: [Pet], counters: Array, onCounterClick: Function, total: number}} props
  */
 export default function PetStore(props) {
@@ -13,7 +14,7 @@ export default function PetStore(props) {
         {props.pets.map(
           /**
            * @param {Pet} pet
-           * @param index
+           * @param {Number} index
            */
           (pet, index) => (
           <tr key={index}>
