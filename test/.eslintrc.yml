@@ -1,0 +1,15 @@
+---
+env:
+  node: true
+  es6: true
+parser: babel-eslint
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+plugins:
+  - typelint
+  - react
+rules:
+  no-undef: 0
+  eol-last: 0
+extends: 'airbnb-base/legacy'
